@@ -1,1 +1,1 @@
-# infra-coingecko
+What is the use of app/__init__.py?
