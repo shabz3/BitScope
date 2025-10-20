@@ -9,7 +9,14 @@ on:
 jobs:
 
   build:
+    runs-on: ubuntu-latest
 
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -17,9 +24,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
@@ -31,11 +35,8 @@ jobs:
     - name: Lint with Ruff
       run: |
         pip install ruff
-        ruff --format=github --target-version=py310 .
+        ruff --format=github --target-version=py312 .
       continue-on-error: true
     - name: Test with pytest
       run: |
-        coverage run -m pytest  -v -s
-    - name: Generate Coverage Report
-      run: |
-        coverage report -m
+        pytest --cov=app --cov-report term-missing
