@@ -14,6 +14,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Build Docker image
+        run: |
+          docker build .
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -27,7 +31,3 @@ jobs:
       - name: Run tests
         run: |
           pytest --cov=app --cov-report term-missing -v
-
-      - name: Build Docker image
-        run: |
-          docker build .
