@@ -1,7 +1,8 @@
 from fastapi import FastAPI, HTTPException, Request
 import os
 import requests
-import uvicorn
+
+# import uvicorn
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -39,7 +40,10 @@ async def get_coingecko_stats(request: Request):
 # Redirects everything else to 404 page
 @app.exception_handler(404)
 async def custom_404_handler(request, __):
-    return templates.TemplateResponse("404.html", {"request": request})
+    return templates.TemplateResponse(
+        request=request, name="404.html", context={"request": request}
+    )
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
