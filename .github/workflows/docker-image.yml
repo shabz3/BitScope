@@ -14,12 +14,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build Docker image for tests
+      - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
           file: Dockerfile
-          tags: ${{ steps.meta.outputs.REPO_NAME }}:latest
+          tags: ${{ steps.meta.outputs.REPO_NAME }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
