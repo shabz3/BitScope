@@ -1,44 +1,63 @@
 # FastAPI CoinGecko
 
-A FastAPI web app that fetches and displays cryptocurrency exchange rates from the CoinGecko API.
+A FastAPI web application that fetches and displays cryptocurrency exchange rates from the CoinGecko API.
 
-This project is containerized with Docker, tested with Pytest and helm chart (and Docker image) published to GHCR using GitHub Actions.
+This project is containerized with Docker, tested with Pytest, and deployed to GHCR (GitHub Container Registry) using GitHub Actions with Helm chart support.
 
 ## Features
-- FastAPI app serving data from CoinGecko
 
-- HTML templating with Jinja2
+- 🚀 FastAPI application serving real-time cryptocurrency data from CoinGecko
+- 🎨 HTML templating with Jinja2
+- 🐳 Dockerized for easy deployment
+- ☸️ Helm chart for Kubernetes deployment (minikube compatible)
+- 🔄 CI/CD pipeline using GitHub Actions
+- 💚 Health checks with readiness and liveness probes
+- ✅ Comprehensive unit tests with pytest
+- 🔒 Container vulnerability scanning with Trivy
 
-- Dockerized for easy deployment
+## Quick Start
 
-- Helm chart for Kubernetes (minikube compatible)
+### Local Development
 
-- CI/CD using GitHub Actions
+1. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- Includes readiness and liveness probes for production resilience
+2. **Run the application**
+   ```bash
+   uvicorn app.main:app --host 0.0.0.0 --port 8000
+   ```
+   Access at [http://localhost:8000](http://localhost:8000)
 
-- Unit tests via pytest
+### Docker
 
-## Run Locally
-### Install dependencies
-`pip install -r requirements.txt`
+1. **Build the image**
+   ```bash
+   docker build -t infra-coingecko .
+   ```
 
-### Run App
-`uvicorn app.main:app --host 0.0.0.0 --port 8000`
-(http://localhost:8000/)
+2. **Run the container**
+   ```bash
+   docker run -p 8000:8000 infra-coingecko
+   ```
 
-## Image Build & Run
-`docker build -t infra-coingecko .`
+### Testing
 
-### Run
-`docker run -p 8000:8000 infra-coingecko`
+Run tests with coverage report:
+```bash
+pytest --cov=app --cov-report term-missing -v
+```
 
-## Run tests
-`pytest --cov=app --cov-report term-missing -v`
+## Deployment
 
-## Access Helm charts:
-https://shabz3.github.io/infra-coingecko/index.yaml
-Or go to https://github.com/shabz3/infra-coingecko/releases
+### Helm Charts
 
-## Access container registry
+Access the Helm chart repository:
+- Repository index: https://shabz3.github.io/infra-coingecko/index.yaml
+- Releases: https://github.com/shabz3/infra-coingecko/releases
+
+### Container Registry
+
+Pre-built Docker images are available at:
 https://github.com/shabz3/infra-coingecko/pkgs/container/infra-coingecko
