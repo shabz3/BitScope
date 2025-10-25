@@ -7,33 +7,18 @@ on:
       - completed
 
 jobs:
-  publish-helm-chart:
-
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: write
-
+  deployment:
+    runs-on: 'ubuntu-latest'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v1
 
-      - name: Login to GHCR
-        run: |
-          helm registry login ghcr.io \
-            -u ${{ github.actor }} \
-            -p ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Package Helm chart
-        run: |
-          helm lint chart/
-          helm package chart/
-
-      - name: Push Helm chart
-        env:
-          CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          pwd
-          ls -LR
-          helm push ./${{ github.event.repository.name }}-*.tgz oci://ghcr.io/${{ github.repository_owner }}/infra-coingecko-charts
+    - name: 'Deploy'
+      uses: 'deliverybot/helm@v1'
+      with:
+        release: 'fastapi-chart'
+        namespace: 'default'
+        chart: 'app'
+        token: '${{ github.token }}'
+        values: |
+          name: foobar
+        value-files: "values.yaml"
