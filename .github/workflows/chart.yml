@@ -1,24 +1,23 @@
-name: Publish-helm-chart
 
+name: Publish Helm Charts
 on:
-  workflow_run:
-    workflows: ["Build-test-push"]
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 jobs:
-  deployment:
-    runs-on: 'ubuntu-latest'
+  release:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-
-    - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
-      with:
-        release: 'fastapi-chart'
-        namespace: 'default'
-        chart: 'app'
-        token: '${{ github.token }}'
-        values: |
-          name: foobar
-        value-files: "values.yaml"
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Configure Git user
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: Run chart-releaser job
+        uses: helm/chart-releaser-action@v1.4.0
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
