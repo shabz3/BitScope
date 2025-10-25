@@ -45,11 +45,14 @@ async def get_coingecko_stats(request: Request):
 # Redirects everything else to 404 page
 @app.exception_handler(404)
 async def custom_404_handler(request, __):
-    logger.info("User trying to access a page that doesn't exist. Redirecting to 404.")
     return templates.TemplateResponse(
         request=request, name="404.html", context={"request": request}
     )
 
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
 
+## Debug
 # if __name__ == "__main__":
 #     uvicorn.run(app, host="0.0.0.0", port=8000)
