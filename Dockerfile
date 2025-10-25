@@ -1,5 +1,8 @@
 
-FROM python:3.12
+FROM python:3.12-slim
+
+# user of "app" for security
+RUN groupadd -r app && useradd -r -g app app
 
 WORKDIR /code
 
@@ -11,6 +14,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 
 COPY . /code/
+
+USER app
 
 EXPOSE 8000
 
