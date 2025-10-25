@@ -24,4 +24,6 @@ jobs:
         env:
           CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          pwd
+          ls -LR
           helm push chart/*.tgz oci://ghcr.io/${{ github.repository }}/charts
