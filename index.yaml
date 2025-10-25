@@ -3,6 +3,16 @@ entries:
   infra-coingecko:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-10-25T15:01:56.646713165Z"
+    description: Helm chart for coingecko implementation
+    digest: cb7ddacd97ba4dfa0c5462dd0b99017dcf3150835f9913fcd39d46ee26385e6d
+    name: infra-coingecko
+    type: application
+    urls:
+    - https://github.com/shabz3/infra-coingecko/releases/download/infra-coingecko-0.1.2/infra-coingecko-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-10-25T14:41:43.053269843Z"
     description: Helm chart for coingecko implementation
     digest: 1ea94039e7ffa98dff5bd09ee8a19c95d33e0f2eab2ceabf5f8c67fe6658d238
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/shabz3/infra-coingecko/releases/download/infra-coingecko-0.1.1/infra-coingecko-0.1.1.tgz
     version: 0.1.1
-generated: "2025-10-25T14:41:43.053275303Z"
+generated: "2025-10-25T15:01:56.646725706Z"
