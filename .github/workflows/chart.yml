@@ -26,4 +26,4 @@ jobs:
         run: |
           pwd
           ls -LR
-          helm push chart/*.tgz oci://ghcr.io/${{ github.repository }}/charts
+          helm push ${{ github.event.repository.name }}-*.tgz oci://ghcr.io/${{ github.repository }}/charts
