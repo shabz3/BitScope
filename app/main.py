@@ -1,13 +1,10 @@
 from fastapi import FastAPI, HTTPException, Request
 import os
 import requests
-
+# Debug
 # import uvicorn
-from fastapi import APIRouter
-from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import RedirectResponse
 from loguru import logger
 
 app = FastAPI()
@@ -49,6 +46,7 @@ async def custom_404_handler(request, __):
         request=request, name="404.html", context={"request": request}
     )
 
+# Liveness/readiness probe check
 @app.get("/health")
 async def health():
     return {"status": "ok"}
