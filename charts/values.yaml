@@ -29,7 +29,7 @@ readinessProbe:
     port: 8000
   initialDelaySeconds: 5
   periodSeconds: 10
-  failureThreshold: 3
+  failureThreshold: 6
 
 livenessProbe:
   enabled: true
@@ -37,5 +37,5 @@ livenessProbe:
     path: /health
     port: 8000
   initialDelaySeconds: 15
-  periodSeconds: 20
-  failureThreshold: 3
+  periodSeconds: 25
+  failureThreshold: 6
