@@ -75,7 +75,7 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
-  release:
+  release-chart:
     permissions:
       contents: write
     runs-on: ubuntu-latest
