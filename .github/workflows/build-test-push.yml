@@ -1,10 +1,9 @@
-name: CI Pipeline
+name: Build-test-push
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
 
 env:
   REGISTRY: ghcr.io

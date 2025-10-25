@@ -1,10 +1,10 @@
 name: Publish-helm-chart
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["Build-test-push"]
+    types:
+      - completed
 
 env:
   REGISTRY: ghcr.io
