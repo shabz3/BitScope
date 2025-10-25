@@ -24,4 +24,4 @@ jobs:
         env:
           CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          helm push ./chart-*.tgz oci://ghcr.io/${{ github.repository }}/charts
+          helm push ./chart oci://ghcr.io/${{ github.repository }}/charts
