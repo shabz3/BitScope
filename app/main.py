@@ -49,6 +49,7 @@ async def custom_404_handler(request, __):
         request=request, name="404.html", context={"request": request}
     )
 
+# Expose Prometheus metrics for FastAPI
 instrumentator = Instrumentator()
 Instrumentator().instrument(app).expose(app)
 
