@@ -61,3 +61,29 @@ Access the Helm chart repository:
 
 Pre-built Docker images are available at:
 https://github.com/shabz3/infra-coingecko/pkgs/container/infra-coingecko
+
+## Run in Minikube using helm
+
+Assumes minkube is installed and started with `minkube start`
+
+1. Install with
+```bash
+helm install coingecko charts/infra-coingecko
+```
+
+2. Check pods are working with
+```bash
+kubectl get pod
+```
+
+3. Get the name of the service with
+```bash
+kubectl get svc
+```
+
+4. Port forward the service with
+```bash
+kubectl service coingecko-service
+```
+
+5. Go to the URL printed (IP of your service)
