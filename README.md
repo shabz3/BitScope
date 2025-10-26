@@ -14,6 +14,7 @@ This project is containerized with Docker, tested with Pytest, and deployed to G
 - 💚 Health checks with readiness and liveness probes
 - ✅ Comprehensive unit tests with pytest
 - 🔒 Container vulnerability scanning with Trivy
+- 🖥️ Metrics scraped and added to Prometheus
 
 ## Quick Start
 
@@ -30,17 +31,12 @@ This project is containerized with Docker, tested with Pytest, and deployed to G
    ```
    Access at [http://localhost:8000](http://localhost:8000)
 
-### Docker
+### Docker compose
 
-1. **Build the image**
-   ```bash
-   docker build -t infra-coingecko .
-   ```
+```bash
+docker compose up --build
+```
 
-2. **Run the container**
-   ```bash
-   docker run -p 8000:8000 infra-coingecko
-   ```
 
 ### Testing
 
@@ -87,3 +83,6 @@ kubectl service coingecko-service
 ```
 
 5. Go to the URL printed (IP of your service)
+
+## Metrics
+To see the metrics being scraped, go to `/metrics` endpoint
