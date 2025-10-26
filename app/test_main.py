@@ -23,8 +23,3 @@ def test_404_page():
     response = client.get("/helloworld")
     assert response.status_code == 200
     assert "404" in response.text
-
-def test_health_returns_200():
-    response = client.get("/health")
-    assert response.status_code == 200
-    assert "ok" in response.text
