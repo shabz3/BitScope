@@ -1,4 +1,4 @@
-# FastAPI CoinGecko
+# BitScope
 
 A FastAPI web application that fetches and displays cryptocurrency exchange rates from the CoinGecko API.
 
